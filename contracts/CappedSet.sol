@@ -9,6 +9,7 @@ contract CappedSet {
     }
     element[] private heap;
     mapping(address => uint256) public addressToIndex;
+    mapping(address => bool) public addressInList;
 
     event Insert(address addr, uint256 value);
     event Remove(address addr, uint256 value);
@@ -28,6 +29,7 @@ contract CappedSet {
             removeLowest();
         }
         heap.push(element(addr, value));
+        addressInList[addr] = true;
         addressToIndex[addr] = heap.length - 1;
 
         if (heap.length == 1){
@@ -61,7 +63,7 @@ contract CappedSet {
 
     function update(address addr, uint256 value) external returns (address, uint256) {
         require(heap.length > 0, "Heap is empty");
-        require(addressToIndex[addr] < heap.length, "Element not found in heap");
+        require(addressInList[addr] == true, "Element not found in CappedSet");
 
         uint256 index = addressToIndex[addr];
         uint256 oldValue = heap[index].value;
@@ -132,6 +134,7 @@ contract CappedSet {
         address lowestAddress = heap[0].addr;
         uint256 lowestValue = heap[0].value;
         delete addressToIndex[lowestAddress];
+        addressInList[lowestAddress] = false;
 
 
         heap[0] = heap[heap.length - 1];

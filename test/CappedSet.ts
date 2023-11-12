@@ -56,6 +56,9 @@ describe("CappedSet contract", function () {
     await cappedSet.update(addrs[0].address, 10);
     let value = await cappedSet.getValue(addrs[0].address);
     expect(value).to.equal(10);
+
+    expect(cappedSet.update(addrs[11].address, 9)).to.be.revertedWith("Element not found in CappedSet");
   });
+
 
 });

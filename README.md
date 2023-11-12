@@ -17,11 +17,11 @@ npx hardhat run scripts/deploy.ts
 ```shell
 npx hardhat run scripts/deploy.ts --network sepolia
 ```
-- Address: 0xBE25d7165a81A2f15D894F9DA076dd8f626CE371
+- Address: 0x25EF5a09fB8a450e89d5e7CBb27f332a8823d364
 - numElements: 10
 
 ### Verify contract 
 ```shell
-npx hardhat verify --network sepolia 0xBE25d7165a81A2f15D894F9DA076dd8f626CE371 10
+npx hardhat verify --network sepolia 0x25EF5a09fB8a450e89d5e7CBb27f332a8823d364 10
 ```
 - The contract link: https://sepolia.etherscan.io/address/0xBE25d7165a81A2f15D894F9DA076dd8f626CE371#code
