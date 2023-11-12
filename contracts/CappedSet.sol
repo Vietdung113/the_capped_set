@@ -7,7 +7,7 @@ contract CappedSet {
         address addr;
         uint256 value;
     }
-    element[] public heap;
+    element[] private heap;
     mapping(address => uint256) public addressToIndex;
 
     event Insert(address addr, uint256 value);
